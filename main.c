@@ -1,29 +1,37 @@
 #include <stdio.h>
 #include<stdlib.h>
 #include <arpa/inet.h>
+#include "connection.h"
 
 int main(int argc, char *argv[]){
-  enum {SERVER_MODE, CLIENT_MODE} mode = CLIENT_MODE;
-  const char * ip_address= "127.0.0.1";
+  ConnectionConfig config ={
+    .mode = CLIENT_MODE,
+    .ip_address = "127.0.0.1"
+  };
 
   for(int arg = 1; arg<argc; arg++){
     if (argv[arg][0] != '-') continue;
     switch (argv[arg][1]) {
-      case 's': mode = SERVER_MODE; break;
-      case 'c': mode = CLIENT_MODE; break;
+      case 's': config.mode = SERVER_MODE; break;
+      case 'c': config.mode = CLIENT_MODE; break;
       case 'a': 
         if (argv[arg + 1]) {
-          ip_address = argv[arg + 1]; 
-          arg++; // Crucial: skip the IP string so the loop doesn't read it next
+          config.ip_address = argv[arg + 1]; 
+          arg++; 
         } else {
           fprintf(stderr, "Error: -a requires an IP address.\n");
           exit(EXIT_FAILURE);
         }
         break;      
       default: 
-        fprintf(stderr, "Usage: %s [-ilw] [file...]\n", argv[0]);
+        fprintf(stderr, "Usage: %s [-s] [-c] [-a ip_address]\n", argv[0]);
           exit(EXIT_FAILURE);
-    }
+    }  
   }
+   if (config.mode = SERVER_MODE){
+      run_server(&config);
+    } else{
+      run_client(&config);
+    }
   return 0;
 }
