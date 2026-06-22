@@ -4,6 +4,7 @@
 typedef struct {
     enum {SERVER_MODE, CLIENT_MODE} mode;
     const char * ip_address; 
+    int port;
 } ConnectionConfig;
 
 void run_server(const ConnectionConfig *config);

@@ -6,7 +6,8 @@
 int main(int argc, char *argv[]){
   ConnectionConfig config ={
     .mode = CLIENT_MODE,
-    .ip_address = "127.0.0.1"
+    .ip_address = "127.0.0.1",
+    .port = 9002
   };
 
   for(int arg = 1; arg<argc; arg++){
@@ -28,10 +29,12 @@ int main(int argc, char *argv[]){
           exit(EXIT_FAILURE);
     }  
   }
-   if (config.mode = SERVER_MODE){
-      run_server(&config);
-    } else{
-      run_client(&config);
-    }
+
+  if (config.mode == SERVER_MODE){
+    run_server(&config);
+  } else{
+    run_client(&config);
+  }
+
   return 0;
 }
