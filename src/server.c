@@ -54,4 +54,5 @@ int handle_client(int clientSocket){
 
   send(clientSocket, httpResponse, strlen(httpResponse), 0);
   close(clientSocket);
+  return 0;
 }
