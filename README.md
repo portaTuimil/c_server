@@ -5,6 +5,6 @@ $ ./c_server  -s (SERVER_MODE) -a (ipadress)
 ```
 in order to run a a server or:
 ```
-$ ./c_server  -c (SERVER_MODE) -a (ipadress)
+$ ./c_server  -c (CLIENT_MODE) -a (ipadress)
 ```
-in order to connect.
+in order to connect as a client.
