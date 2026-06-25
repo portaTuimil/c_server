@@ -7,7 +7,7 @@ int main(int argc, char *argv[]){
   ConnectionConfig config ={
     .mode = CLIENT_MODE,
     .ip_address = "127.0.0.1",
-    .port = 9002
+    .port = 9001
   };
 
   for(int arg = 1; arg<argc; arg++){

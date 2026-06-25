@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 #include "connection.h"
 void run_client(const ConnectionConfig *config) {
   int clientSocketD = socket(AF_INET, SOCK_STREAM, 0);
@@ -23,6 +24,7 @@ void run_client(const ConnectionConfig *config) {
       recv(clientSocketD, strData, sizeof(strData), 0);
       printf("Message: %s\n", strData);
   }
-  
+
+  close(clientSocketD);
   return;
 }
